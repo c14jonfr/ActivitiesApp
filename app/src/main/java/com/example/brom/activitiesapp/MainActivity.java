@@ -2,8 +2,14 @@ package com.example.brom.activitiesapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,16 +24,42 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Mountain m0 = new Mountain("Matterhorn", "Alps", 4478);
-        Mountain m1 = new Mountain("Mont Blanc", "Alps", 4808);
-        Mountain m2 = new Mountain("Denali", "Alaska", 6190);
+        final Mountain m0 = new Mountain("Matterhorn", "Alps", 4478);
+        final Mountain m1 = new Mountain("Mont Blanc", "Alps", 4808);
+        final Mountain m2 = new Mountain("Denali", "Alaska", 6190);
 
-        List<Mountain> mountains = new ArrayList<Mountain>();
+        final List<Mountain> mountains = new ArrayList<Mountain>();
         mountains.add(m0);
         mountains.add(m1);
         mountains.add(m2);
-        
 
+
+
+        List<String> mountainData = new ArrayList<String> ();
+
+        for (int i = 0; i < mountains.size(); i++) {
+            mountainData.add(mountains.get(i).toString());
+        }
+
+        //mountainData.add(m0.toString());
+        //mountainData.add(m1.toString());
+
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.list_item_textview, R.id.my_item_textview, mountainData);
+
+        final ListView myListView = (ListView) findViewById(R.id.listView);
+        myListView.setAdapter(adapter);
+
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(getApplicationContext(), mountains.get(position).info(), Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
 
 
         // 1. Create a ListView as in previous assignment

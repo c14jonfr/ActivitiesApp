@@ -21,7 +21,7 @@ public class Mountain {
         str+=location;
         str+=" and has a height of ";
         str+=height;
-        str+="m.a.s.l.";
+        str+=" m.a.s.l.";
         return str;
 
     }
