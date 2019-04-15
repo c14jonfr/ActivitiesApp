@@ -3,6 +3,9 @@ package com.example.brom.activitiesapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private String[] mountainNames = {"Matterhorn","Mont Blanc","Denali"};
     private String[] mountainLocations = {"Alps","Alps","Alaska"};
@@ -13,6 +16,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Mountain m0 = new Mountain("Matterhorn", "Alps", 4478);
+        Mountain m1 = new Mountain("Mont Blanc", "Alps", 4808);
+        Mountain m2 = new Mountain("Denali", "Alaska", 6190);
+
+        List<Mountain> mountains = new ArrayList<Mountain>();
+        mountains.add(m0);
+        mountains.add(m1);
+        mountains.add(m2);
+        
+
+
 
         // 1. Create a ListView as in previous assignment
         // 2. Create a new activity named "MountainDetailsActivity
