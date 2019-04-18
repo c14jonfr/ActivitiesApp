@@ -1,5 +1,6 @@
 package com.example.brom.activitiesapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,9 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Toast.makeText(getApplicationContext(), mountains.get(position).info(), Toast.LENGTH_SHORT).show();
+              //
+                launchMountainDetailsActivity(view);
 
 
             }
@@ -82,4 +84,10 @@ public class MainActivity extends AppCompatActivity {
         //    left arro button. This is done by letting the MainActivity be the parent activity to
         //    MountainDetailsActivity.
     }
+
+    public void launchMountainDetailsActivity(View view) {
+        Intent intent = new Intent(this, MountainDetailsActivity.class);
+        startActivity(intent);
+    }
 }
+
