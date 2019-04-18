@@ -36,14 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        List<String> mountainData = new ArrayList<String> ();
+        final List<String> mountainData = new ArrayList<String> ();
 
         for (int i = 0; i < mountains.size(); i++) {
             mountainData.add(mountains.get(i).toString());
         }
 
-        //mountainData.add(m0.toString());
-        //mountainData.add(m1.toString());
+
 
         ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.list_item_textview, R.id.my_item_textview, mountainData);
 
@@ -56,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-              //
-                launchMountainDetailsActivity(view);
+               String mountainInfo = mountains.get(position).info();
+               launchMountainDetailsActivity(view, mountainInfo);
 
 
             }
@@ -85,8 +84,12 @@ public class MainActivity extends AppCompatActivity {
         //    MountainDetailsActivity.
     }
 
-    public void launchMountainDetailsActivity(View view) {
+    public void launchMountainDetailsActivity(View view, String mountainInfo) {
+
+
+
         Intent intent = new Intent(this, MountainDetailsActivity.class);
+        intent.putExtra("MOUNTAININFO", mountainInfo);
         startActivity(intent);
     }
 }
